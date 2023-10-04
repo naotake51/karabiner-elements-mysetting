@@ -1,0 +1,90 @@
+{
+    "title": "Chrome カスタムキーマップ",
+    "author": "Naoki Takeshita",
+    "rules": [
+        {
+            "description": "APP_SUB_MODE タブ追加(N)、タブ削除(B)",
+            "manipulators": [
+                {
+                    "conditions": [
+                        {
+                            "type": "frontmost_application_if",
+                            "bundle_identifiers": [
+                                "^com\\.google\\.Chrome$"
+                            ]
+                        },
+                        {
+                            "type": "variable_if",
+                            "name": "mode",
+                            "value": "app_sub_mode"
+                        }
+                    ],
+                    "type": "basic",
+                    "from": {
+                        "key_code": "n"
+                    },
+                    "to": [
+                        {
+                            "key_code": "t",
+                            "modifiers": "command"
+                        }
+                    ]
+                },
+                {
+                    "conditions": [
+                        {
+                            "type": "frontmost_application_if",
+                            "bundle_identifiers": [
+                                "^com\\.google\\.Chrome$"
+                            ]
+                        },
+                        {
+                            "type": "variable_if",
+                            "name": "mode",
+                            "value": "app_sub_mode"
+                        }
+                    ],
+                    "type": "basic",
+                    "from": {
+                        "key_code": "b"
+                    },
+                    "to": [
+                        {
+                            "key_code": "w",
+                            "modifiers": "command"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "description": "NORMAL_SUB_MODE Vimium(U)",
+            "manipulators": [
+                {
+                    "conditions": [
+                        {
+                            "type": "frontmost_application_if",
+                            "bundle_identifiers": [
+                                "^com\\.google\\.Chrome$"
+                            ]
+                        },
+                        {
+                            "type": "variable_if",
+                            "name": "mode",
+                            "value": "normal_sub_mode"
+                        }
+                    ],
+                    "type": "basic",
+                    "from": {
+                        "key_code": "u"
+                    },
+                    "to": [
+                        {
+                            "key_code": "f"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
