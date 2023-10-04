@@ -16,7 +16,1779 @@
                     "basic.to_if_held_down_threshold_milliseconds": 500,
                     "mouse_motion_to_scroll.speed": 100
                 },
-                "rules": []
+                "rules": [
+                    {
+                        "description": "モード切り替え (NORMAL_MODE, NORMAL_SUB_MODE, APP_MODE, APP_SUB_MODE)",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "japanese_eisuu"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "japanese_eisuu"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "key_up_value": "normal_mode",
+                                            "name": "mode",
+                                            "value": "normal_sub_mode"
+                                        }
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "jumpy",
+                                        "type": "variable_unless",
+                                        "value": true
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "japanese_kana"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "escape"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "cursor_mode",
+                                            "value": "text_moving"
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "key_up_value": "app_mode",
+                                            "name": "mode",
+                                            "value": "app_sub_mode"
+                                        }
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "jumpy",
+                                        "type": "variable_if",
+                                        "value": true
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "japanese_kana"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "jumpy",
+                                            "value": false
+                                        }
+                                    },
+                                    {
+                                        "key_code": "j",
+                                        "modifiers": [
+                                            "command",
+                                            "shift"
+                                        ]
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "cursor_mode",
+                                            "value": "text_moving"
+                                        }
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "key_up_value": "app_mode",
+                                            "name": "mode",
+                                            "value": "app_sub_mode"
+                                        }
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "NORMAL_SUB_MODE かな(N) 英数(E)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "normal_sub_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "n"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "japanese_kana"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "normal_sub_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "e"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "japanese_eisuu"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "APP_MODE 通常移動(I,J,K,L,H,;,E,D,S,F)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "text_moving"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "i"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "text_moving"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "k"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "text_moving"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "j"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "text_moving"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "l"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "text_moving"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "h"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": "left_alt"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "text_moving"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "semicolon"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": "left_alt"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "text_moving"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "e"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "page_up"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "text_moving"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "d"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "page_down"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "text_moving"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "s"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "home"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "text_moving"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "f"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "end"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "APP_MODE テキスト選択",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "u"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "cursor_mode",
+                                            "value": "text_selecting"
+                                        }
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "text_selecting"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "i"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow",
+                                        "modifiers": "shift"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "text_selecting"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "k"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow",
+                                        "modifiers": "shift"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "text_selecting"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "j"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": "shift"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "text_selecting"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "l"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": "shift"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "text_selecting"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "h"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": [
+                                            "left_alt",
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "text_selecting"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "semicolon"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "left_alt",
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "text_selecting"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "e"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "page_up",
+                                        "modifiers": "shift"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "text_selecting"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "d"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "page_down",
+                                        "modifiers": "shift"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "text_selecting"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "s"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "home",
+                                        "modifiers": "shift"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "text_selecting"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "f"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "end",
+                                        "modifiers": "shift"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "APP_MODE 矩形選択",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "y"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "cursor_mode",
+                                            "value": "kukei_selecting"
+                                        }
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "kukei_selecting"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "i"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow",
+                                        "modifiers": [
+                                            "command",
+                                            "option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "kukei_selecting"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "k"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow",
+                                        "modifiers": [
+                                            "command",
+                                            "option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "kukei_selecting"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "j"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": "shift"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "kukei_selecting"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "l"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": "shift"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "kukei_selecting"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "h"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": [
+                                            "left_alt",
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "kukei_selecting"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "semicolon"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "left_alt",
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "kukei_selecting"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "e"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow",
+                                        "modifiers": [
+                                            "command",
+                                            "option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "kukei_selecting"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "d"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow",
+                                        "modifiers": [
+                                            "command",
+                                            "option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "kukei_selecting"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "s"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "home",
+                                        "modifiers": "shift"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "kukei_selecting"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "f"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "end",
+                                        "modifiers": "shift"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "APP_MODE 単語選択(T)、単語全選択(R)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "t"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "d",
+                                        "modifiers": "command"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "r"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "f2",
+                                        "modifiers": "command"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "APP_MODE コピー(C)、貼り付け(V)、元に戻す(Z) 切り取り(X)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "z"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "z",
+                                        "modifiers": "command"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "x"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "x",
+                                        "modifiers": "command"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "text_moving"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "c"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "c",
+                                        "modifiers": "command"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "text_selecting"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "c"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "c",
+                                        "modifiers": "command"
+                                    },
+                                    {
+                                        "key_code": "escape"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "cursor_mode",
+                                            "value": "text_moving"
+                                        }
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "kukei_selecting"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "c"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "c",
+                                        "modifiers": "command"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "cursor_mode",
+                                            "value": "text_moving"
+                                        }
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "v"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "v",
+                                        "modifiers": "command"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "APP_MODE 行追加(N)、行削除(B)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "n"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "return_or_enter",
+                                        "modifiers": "command"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "b"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "k",
+                                        "modifiers": [
+                                            "command",
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "APP_MODE 関数ジャンプ(1)、使用箇所(2)、元位置に戻る(3)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "1"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "f12"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "2"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "f12",
+                                        "modifiers": "shift"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "3"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "hyphen",
+                                        "modifiers": "control"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "APP_MODE 最終修正箇所に移動(M)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "m"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "k",
+                                        "modifiers": "command"
+                                    },
+                                    {
+                                        "key_code": "q",
+                                        "modifiers": "command"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "APP_MODE Delete(G)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "g"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "delete_forward"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "APP_MODE Clipy(W,Q)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "w"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "v",
+                                        "modifiers": [
+                                            "command",
+                                            "control"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "q"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "b",
+                                        "modifiers": [
+                                            "command",
+                                            "control"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "APP_SUB_MODE ファイル追加(N)、ファイル削除(B)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_sub_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "n"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "n",
+                                        "modifiers": "command"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_sub_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "b"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "w",
+                                        "modifiers": "command"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "APP_SUB_MODE タブ移動(J,L)、ウィンドウ移動(S,F)、 Page Top(E)、Page End(D)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_sub_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "j"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "close_bracket",
+                                        "modifiers": [
+                                            "command",
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_sub_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "l"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "backslash",
+                                        "modifiers": [
+                                            "command",
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_sub_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "e"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow",
+                                        "modifiers": "command"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_sub_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "d"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow",
+                                        "modifiers": "command"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_sub_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "s"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "comma",
+                                        "modifiers": "command"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_sub_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "f"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "period",
+                                        "modifiers": "command"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "APP_SUB_MODE Bookmark Previous(I)、Bookmark Next(K)、Bookmark Toggle(U)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_sub_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "u"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "k",
+                                        "modifiers": [
+                                            "command",
+                                            "option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_sub_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "i"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "j",
+                                        "modifiers": [
+                                            "command",
+                                            "option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_sub_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "k"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "l",
+                                        "modifiers": [
+                                            "command",
+                                            "option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "NORMAL_SUB_MODE Alfred(A)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "normal_sub_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "a"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "spacebar",
+                                        "modifiers": [
+                                            "option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "APP_SUB_MODE 補助移動(I,J,K,L)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "normal_sub_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "text_moving"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "i"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "normal_sub_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "text_moving"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "k"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "normal_sub_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "text_moving"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "j"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "normal_sub_mode"
+                                    },
+                                    {
+                                        "name": "cursor_mode",
+                                        "type": "variable_if",
+                                        "value": "text_moving"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "l"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "APP_SUB_MODE コマンドパレット(P, Shift-P)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "normal_sub_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "p"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "p",
+                                        "modifiers": "command"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "normal_sub_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "p",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "p",
+                                        "modifiers": [
+                                            "command",
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "NORMAL_SUB_MODE Jumpy(U)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "normal_sub_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "u"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "jumpy",
+                                            "value": true
+                                        }
+                                    },
+                                    {
+                                        "key_code": "j",
+                                        "modifiers": "command"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    }
+                ]
             },
             "devices": [
                 {
