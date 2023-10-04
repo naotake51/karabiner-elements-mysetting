@@ -1,0 +1,61 @@
+{
+    "title": "Finder カスタムキーマップ",
+    "author": "Naoki Takeshita",
+    "rules": [
+        {
+            "description": "APP_SUB_MODE タブ追加(N)、タブ削除(B)",
+            "manipulators": [
+                {
+                    "conditions": [
+                        {
+                            "type": "frontmost_application_if",
+                            "bundle_identifiers": [
+                                "^com\\.apple\\.finder$"
+                            ]
+                        },
+                        {
+                            "type": "variable_if",
+                            "name": "mode",
+                            "value": "app_sub_mode"
+                        }
+                    ],
+                    "type": "basic",
+                    "from": {
+                        "key_code": "n"
+                    },
+                    "to": [
+                        {
+                            "key_code": "t",
+                            "modifiers": "command"
+                        }
+                    ]
+                },
+                {
+                    "conditions": [
+                        {
+                            "type": "frontmost_application_if",
+                            "bundle_identifiers": [
+                                "^com\\.apple\\.finder$"
+                            ]
+                        },
+                        {
+                            "type": "variable_if",
+                            "name": "mode",
+                            "value": "app_sub_mode"
+                        }
+                    ],
+                    "type": "basic",
+                    "from": {
+                        "key_code": "b"
+                    },
+                    "to": [
+                        {
+                            "key_code": "w",
+                            "modifiers": "command"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

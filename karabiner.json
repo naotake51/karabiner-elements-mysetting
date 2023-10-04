@@ -102,6 +102,61 @@
                         ]
                     },
                     {
+                        "description": "APP_SUB_MODE タブ追加(N)、タブ削除(B)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.apple\\.finder$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    },
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_sub_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "n"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "t",
+                                        "modifiers": "command"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.apple\\.finder$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    },
+                                    {
+                                        "name": "mode",
+                                        "type": "variable_if",
+                                        "value": "app_sub_mode"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "b"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "w",
+                                        "modifiers": "command"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "モード切り替え (NORMAL_MODE, NORMAL_SUB_MODE, APP_MODE, APP_SUB_MODE)",
                         "manipulators": [
                             {
