@@ -1485,7 +1485,7 @@
                         ]
                     },
                     {
-                        "description": "APP_SUB_MODE ファイル追加(N)、ファイル削除(B)",
+                        "description": "APP_SUB_MODE タブ追加(N)、タブ削除(B)",
                         "manipulators": [
                             {
                                 "conditions": [
