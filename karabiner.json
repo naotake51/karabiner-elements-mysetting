@@ -165,9 +165,6 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "japanese_eisuu"
-                                    },
-                                    {
                                         "set_variable": {
                                             "key_up_value": "normal_mode",
                                             "name": "mode",
